@@ -21,3 +21,12 @@ async def get_table_data(table: str, user_id: str):
             params={"user_id": f"eq.{user_id}"}
         )
         return response.json()
+    
+async def insert_table_data(table: str, data: dict):
+    async with httpx.AsyncClient() as client:
+        response = await client.post(
+            f"{SUPABASE_URL}/rest/v1/{table}",
+            headers=headers,
+            json=[data]  # Supabase requires a list of records
+        )
+        return response.json()
