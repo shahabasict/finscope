@@ -14,6 +14,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
+
 async def get_table_data(table: str, user_id: str):
     async with httpx.AsyncClient() as client:
         response = await client.get(
@@ -25,28 +26,32 @@ async def get_table_data(table: str, user_id: str):
             raise Exception(f"Supabase error: {response.text}")
         return response.json()
 
+
 async def insert_table_data(table: str, data: dict):
     async with httpx.AsyncClient() as client:
         response = await client.post(
             f"{SUPABASE_URL}/rest/v1/{table}",
             headers=headers,
-            json=[data]  # Supabase expects a list for bulk-insert, even if single.
+            json=[data]
         )
         if response.is_error:
             raise Exception(f"Supabase error: {response.text}")
-        return response.json()
+        json_response = response.json()
+        return json_response
+
 
 async def update_table_data(table: str, row_id: str, data: dict):
-    # Replace row_id with appropriate identifier column if needed
     async with httpx.AsyncClient() as client:
         response = await client.patch(
-            f"{SUPABASE_URL}/rest/v1/{table}?id=eq.{row_id}",  # Assuming 'id' pk
+            f"{SUPABASE_URL}/rest/v1/{table}?id=eq.{row_id}",
             headers=headers,
             json=data
         )
         if response.is_error:
             raise Exception(f"Supabase error: {response.text}")
-        return response.json()
+        json_response = response.json()
+        return json_response
+
 
 async def delete_table_data(table: str, row_id: str):
     async with httpx.AsyncClient() as client:
@@ -56,4 +61,4 @@ async def delete_table_data(table: str, row_id: str):
         )
         if response.is_error:
             raise Exception(f"Supabase error: {response.text}")
-        return response.json()
+        return {"deleted": True}
