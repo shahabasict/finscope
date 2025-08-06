@@ -1,7 +1,10 @@
 # finscope
 Personal Finance management App
 
+ Sample Personal finance management app
+ 
 
 
 SUPABASE_URL=https://dfddksvblzonkercgpwr.supabase.co
 SUPABASE_API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRmZGRrc3ZibHpvbmtlcmNncHdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxMzM2ODAsImV4cCI6MjA2NzcwOTY4MH0.18eQbltpr0KbdnQVEj_OghfFxOQ7iaA00WGe8GhXz1k
+
